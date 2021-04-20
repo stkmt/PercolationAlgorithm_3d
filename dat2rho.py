@@ -11,7 +11,7 @@ argvs = sys.argv
 start_time = time.time()
 
 
-if len(argvs) != 2:
+if len(argvs) < 2:
     print("\n"
           "         PROGRAM DESCRIPTION\n"
           "\n"
@@ -62,7 +62,7 @@ for datfile in argvs[2:]:
             except:
                 f.write('{:.8e}  '.format(0))
 
-    print("output: {}".format(datfile))
+    print("output: {}".format(datfile.replace("out.", "")+".rho"))
 
 end_time = time.time()
 elapsed_time = end_time - start_time
