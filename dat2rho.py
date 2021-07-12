@@ -4,7 +4,7 @@ import os
 import sys
 import time
 
-#Date 2021/04
+#Date 2021/05
 #Author Shuta Takimoto
 
 argvs = sys.argv
@@ -16,11 +16,11 @@ if len(argvs) < 2:
           "         PROGRAM DESCRIPTION\n"
           "\n"
           "         This program is going to convert .dat files to .rho files.\n"
-          "         COMMAND --> 'python Percolation.py Arg1 Arg2...'\n"
+          "         COMMAND --> 'python dat2rho.py Arg1 Arg2...'\n"
           "\n"
           "         Arg1 should be .rho file (ex. BVSxmap.rho) related to the structure you calculated.\n"
           "         Arg2 should be .dat files (ex. out.xpath). You can set a couple of files sepalately by space.\n"
-          "         Like 'out.xpath out.ypath out.zpath'.\n"
+          "         Like 'Xpath.dat Ypath.dat Zpath.dat'.\n"
           "\n"
           "         Hope your success. Bye:)\n"
           )
@@ -40,7 +40,9 @@ for datfile in argvs[2:]:
     loop = len(pathlines) // 5
     loopre = len(pathlines) % 5
 
-    with open('xpath.rho', 'w') as f:
+    filename = datfile.replace(".dat", "") + ".rho"
+
+    with open(filename, 'w') as f:
         f.write(maplines[0])
         f.write(maplines[1])
         f.write(maplines[2])
@@ -62,7 +64,7 @@ for datfile in argvs[2:]:
             except:
                 f.write('{:.8e}  '.format(0))
 
-    print("output: {}".format(datfile.replace("out.", "")+".rho"))
+    print("output: {}".format(filename))
 
 end_time = time.time()
 elapsed_time = end_time - start_time
